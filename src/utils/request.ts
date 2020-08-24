@@ -3,7 +3,8 @@ import store from '@/store'
 import { getToken } from '@/utils/auth'
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
+  // baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
+  baseURL: 'https://qa-api.victor.vip/', 
   timeout: 10000 // request timeout
 })
 

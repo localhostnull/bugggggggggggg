@@ -16,11 +16,11 @@ Vue.use(VueRouter)
     name: 'room1Student',
     component: () => import('../views/room1/Student.vue')
   },
-  // {
-  //   path: '/room1/teacher/*',
-  //   name: 'room1Teacher',
-  //   component: () => import('../views/room1/Teacher.vue')
-  // },
+  {
+    path: '/room1/teacher/*',
+    name: 'room1Teacher',
+    component: () => import('../views/room1/Teacher.vue')
+  },
   // {
   //   path: '/room1/tutor',
   //   name: 'room1Tutor',

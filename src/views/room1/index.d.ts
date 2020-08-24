@@ -1,7 +1,7 @@
 import { IDrawInfo } from '@/components/RoomCanvas/index.d'
 
 export interface IRtcInfo {
-    appID: string
+    app_id: string
     channel: string
     uid: number
     token: string
@@ -38,14 +38,23 @@ export interface IPageSet {
     current: number
 }
 
+export interface IDraInfo {
+    action: string
+    type: string
+    id: string
+    info: IDrawInfo
+}
+
 export interface ICacheData {
     pageCurrent: number
-    drawInfo: Array<{
-        action: string
-        type: string
-        id: string
-        info: IDrawInfo
-    }>
+    drawInfo: IDraInfo[]
+}
+
+export interface IView {
+    width: number;
+    height: number;
+    top: number;
+    left: number;
 }
 
 export interface IViewSet {
@@ -53,18 +62,12 @@ export interface IViewSet {
         width: number
         height: number
     }
-    courseware: {
-        width: number;
-        height: number;
-        top: number;
-        left: number;
-    }
-    control: {
-        width: number;
-        height: number;
-        top: number;
-        left: number;
-    }
+    courseware: IView
+    control: IView
+    teacher?: IView
+    student?: IView
+    discuss?: IView
+    self?: IView
 }
 
 export interface IStudent {
@@ -74,10 +77,31 @@ export interface IStudent {
     avatar: string
     point: number
     group: number
+    online?: boolean
+    classStatus?: number,
+    classStatusTime?: number,
+    classStatusList?: number[],
 }
 
 export interface IActivityStudent {
     uid: number
     x: number
     y: number
+}
+
+export interface IDiscuss {
+    list: Array<{
+        name: string
+        message: string
+    }>
+    message: string
+}
+
+export interface IAppraiseParam {
+    uid: number
+    id: number
+    name: string
+    url: string
+    point: number
+    medal_id?: number
 }

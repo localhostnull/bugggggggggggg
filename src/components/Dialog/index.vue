@@ -24,12 +24,12 @@ export default class Dialog extends Vue {
     type: String,
     default: "",
   })
-  public title: string = "";
+  public title!: string;
   @Prop({
     type: Number,
     default: 500,
   })
-  public width: number = 500;
+  public width!: number;
 
   public visible: boolean = false;
 

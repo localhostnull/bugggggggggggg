@@ -43,7 +43,7 @@ export default class Appraise extends Vue {
     type: String,
     default: ''
   })
-  public roomId: string = ''
+  public roomId!: string;
 
   public visible:boolean = false
   public userInfo:IUserInfo = {} as IUserInfo

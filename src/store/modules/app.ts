@@ -1,4 +1,5 @@
-import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
+import store from '@/store';
+import { Module, VuexModule, Mutation, Action, getModule } from 'vuex-module-decorators'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { IAppStates } from './app.d'
 import { loginApi, getUserInfoApi } from '@/servece/user'
@@ -6,12 +7,13 @@ import { loginApi, getUserInfoApi } from '@/servece/user'
 @Module({
   name: 'App',
   stateFactory: true,
-  dynamic: true
+  dynamic: true,
+  store
 })
-export default class App extends VuexModule {
+class App extends VuexModule {
   public states: IAppStates = {
     token: getToken(),
-    name: '12312313',
+    name: '',
     avatar: ''
   }
 
@@ -43,12 +45,12 @@ export default class App extends VuexModule {
   @Action({ commit: 'SET_TOKEN', rawError: true })
   public async LoginByToken(token: string) {
     setToken(token)
-    const res = await loginApi(token)
+    const res = await loginApi()
     setToken(res.data.token)
   }
   @Action
   public async GetUserInfo() {
-    const res = await getUserInfoApi((this.states.token) as string)
+    const res = await getUserInfoApi()
     this.SET_NAME(res.data.name)
     this.SET_AVATAR(res.data.avatar_url)
   }
@@ -59,3 +61,5 @@ export default class App extends VuexModule {
     return
   }
 }
+
+export default getModule(App)

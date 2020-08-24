@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import AppModule from '@/store/modules/app'
 
 @Component
 export default class Home extends Vue {
@@ -40,8 +41,9 @@ export default class Home extends Vue {
       return;
     }
     this.loading = true;
-    this.$store
-      .dispatch("LoginByToken", this.token)
+    console.log(this.$store.dispatch("LoginByToken", this.token))
+    AppModule.LoginByToken(this.token)
+      // .dispatch("LoginByToken", this.token)
       .then(() => {
         this.$router.push({
           path: "/" + this.type + "/" + this.role + "/" + this.roomId,

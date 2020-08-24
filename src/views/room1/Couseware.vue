@@ -106,7 +106,7 @@ export default class Couseware extends Vue {
   public roomId = "";
   public roomInfo: IRoomInfo = {} as IRoomInfo;
   public rtmInfo: IRtmInfo = {
-    appID: "",
+    app_id: "",
     channel: "",
     uid: 0,
     token: "",
@@ -199,7 +199,7 @@ export default class Couseware extends Vue {
     });
     getRtmInfoApi(this.roomId).then(({ data: res }) => {
       this.rtmInfo = res;
-      this.rtm.client = AgoraRTM.createInstance(this.rtmInfo.appID);
+      this.rtm.client = AgoraRTM.createInstance(this.rtmInfo.app_id);
       this.rtmInit();
     });
   }

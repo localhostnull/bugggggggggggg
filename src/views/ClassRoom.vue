@@ -482,7 +482,7 @@ export default class ClassRoom extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 body {
   background-color: #829def;
   margin: 0;

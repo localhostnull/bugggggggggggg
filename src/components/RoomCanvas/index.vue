@@ -27,27 +27,29 @@ export default class RoomCanvas extends Vue {
   @Prop({
     type: String,
   })
-  public id = "";
-
+  public id!: string;
+  // 绘图区域宽度
   @Prop({
     type: Number,
-  }) // 绘图区域宽度
-  public width = 0;
+  })
+  public width!: number;
 
+  // 绘图区域高度
   @Prop({
     type: Number,
-  }) // 绘图区域高度
-  public height = 0;
-
+  })
+  height!: number;
+  // 图片路径
   @Prop({
     type: Boolean,
-  }) // 图片路径
-  public canDraw = true;
-
-  //   @Prop({
-  //     type: Array,
-  //   }) // 位置点信息
-  //   public info: Array = true;
+    default: true
+  })
+  canDraw!: boolean;
+  // 位置点信息
+  @Prop({
+    type: Array,
+  })
+  public info!: [];
 
   // canvas对象
   public context: CanvasRenderingContext2D = {} as CanvasRenderingContext2D;
@@ -74,6 +76,10 @@ export default class RoomCanvas extends Vue {
   };
   public canvas: HTMLCanvasElement = {} as HTMLCanvasElement;
 
+  mounted() {
+    this.initDraw();
+  }
+
   // 初始化绘制信息
   public initDraw(): void {
     // 初始化画布
@@ -85,6 +91,7 @@ export default class RoomCanvas extends Vue {
   }
   // 鼠标按下
   public canvasDown(e: MouseEvent & TouchEvent): void {
+    console.log('onmousedown', this.canDraw)
     if (this.canDraw) {
       this.canvasMoveUse = true;
       // client是基于整个页面的坐标，offset是cavas距离pictureDetail顶部以及左边的距离
@@ -131,6 +138,7 @@ export default class RoomCanvas extends Vue {
   }
   // 鼠标移动时绘制
   public canvasMove(e: MouseEvent & TouchEvent): void {
+    console.log(this.canvasMoveUse, this.canDraw);
     if (this.canvasMoveUse && this.canDraw) {
       let canvasX = e.offsetX;
       let canvasY = e.offsetY;

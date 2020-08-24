@@ -1,6 +1,6 @@
 import { IUser, IUserInfo } from './index.d'
 import request from '@/utils/request'
 
-export const loginApi = (token: string) => request.post<IUser>('/user/user/login', token)
+export const loginApi = () => request.post<IUser>('/user/user/login')
 
-export const getUserInfoApi = (token: string) => request.post<IUserInfo>('/user/user/login', token)
+export const getUserInfoApi = () => request.post<IUserInfo>('/user/user/get-user-info')

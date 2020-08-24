@@ -10,9 +10,9 @@ export interface IMedalInfo {
 
 export interface IRoomUser {
     avatar: string;
-    group: number;
+    group?: number;
     name: string;
-    role: string;
+    role?: string;
     uid: number;
 }
 
